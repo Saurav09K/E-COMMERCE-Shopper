@@ -13,6 +13,7 @@ const createToken = (id) => {
     );
 };
 
+
 // Login
 const login = async (req, res) => {
     try {
@@ -123,10 +124,12 @@ const register = async (req, res) => {
 }
 
 
+
 // Admin Login
 const adminlogin = async (req, res) => {
 
 }
+
 
 
 export { login,
