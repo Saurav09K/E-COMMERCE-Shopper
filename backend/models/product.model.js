@@ -14,7 +14,7 @@ const productSchema = new mongoose.Schema({
         required: true,
     },
     image:{
-        type: String,
+        type: [String],
         required: true,
     },
     category: {
@@ -36,6 +36,11 @@ const productSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
+    role: { 
+            type: String, 
+            enum: ['user', 'admin'], 
+            default: 'user' 
+        },
 })
 
 const Product = mongoose.model("Product", productSchema);

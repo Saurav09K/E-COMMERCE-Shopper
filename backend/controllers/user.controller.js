@@ -51,7 +51,8 @@ const login = async (req, res) => {
             user: {
                 id: user._id,
                 name: user.name,
-                email: user.email
+                email: user.email,
+                role: user.role,
             }
         });
 
@@ -112,6 +113,7 @@ const register = async (req, res) => {
                 id: user._id,
                 name: user.name,
                 email: user.email,
+                role: user.role,
             },
         });
 
@@ -127,7 +129,58 @@ const register = async (req, res) => {
 
 // Admin Login
 const adminlogin = async (req, res) => {
+    try {
+        const { email, password } = req.body;
 
+        if (!email || !password) {
+            return res.status(400).json({
+                message: "Please provide email and password"
+            });
+        }
+
+        const normalizedEmail = email.toLowerCase();
+        const user = await User.findOne({ email: normalizedEmail });
+
+        if (!user) {
+            return res.status(404).json({
+                message: "User does not exist"
+            });
+        }
+
+        // --- THE NEW CRUCIAL ADMIN CHECK ---
+        if (user.role !== 'admin') {
+            return res.status(403).json({
+                message: "Access denied. Admin privileges required."
+            });
+        }
+
+        const isMatch = await bcrypt.compare(password, user.password);
+
+        if (!isMatch) {
+            return res.status(401).json({
+                message: "Invalid credentials"
+            });
+        }
+
+        const token = createToken(user._id);
+
+        return res.status(200).json({
+            message: "Admin login successful",
+            token, 
+            user: {
+                id: user._id,
+                name: user.name,
+                email: user.email,
+                role: user.role
+            }
+        });
+
+    } catch (error) {
+        console.log("Admin Login error:", error);
+        return res.status(500).json({
+            message: "Internal server error"
+        });
+    }
 }
 
 
