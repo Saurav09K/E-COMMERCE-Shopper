@@ -1,0 +1,91 @@
+/* Container for the whole form */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    max-width: 384px; /* Matches sm:max-w-96 */
+    margin: 3.5rem auto 0; /* Centers horizontally, adds top margin */
+    gap: 1rem;
+    color: #1f2937; /* Dark gray text */
+    font-family: sans-serif;
+}
+
+/* Header section (Title + Line) */
+.login-header {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.login-title {
+    font-size: 1.875rem;
+    font-weight: 400;
+    margin: 0;
+    /* If you are using a custom font like Prata, keep this. Otherwise, it defaults to serif */
+    font-family: 'Prata', serif; 
+}
+
+.login-divider {
+    border: none;
+    height: 1.5px;
+    width: 2rem;
+    background-color: #1f2937;
+}
+
+/* Inputs */
+.form-input {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #1f2937;
+    outline: none;
+    box-sizing: border-box; /* Ensures padding doesn't widen the input */
+    font-size: 1rem;
+}
+
+.form-input:focus {
+    border-width: 2px; /* Slight visual bump when typing */
+}
+
+/* Links below the inputs */
+.form-links {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    margin-top: -8px; /* Pulls it slightly closer to the password input */
+}
+
+.link-text {
+    cursor: pointer;
+    margin: 0;
+    color: #4b5563;
+}
+
+.link-text:hover {
+    color: #000;
+}
+
+.link-text.bold {
+    font-weight: 700;
+    color: #1f2937;
+}
+
+/* Submit Button */
+.submit-btn {
+    background-color: black;
+    color: white;
+    font-weight: 300;
+    padding: 0.5rem 2rem;
+    margin-top: 1rem;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+}
+
+.submit-btn:hover {
+    background-color: #333; /* Slight fade on hover */
+}

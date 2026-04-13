@@ -2,7 +2,7 @@ import User from "../models/user.model.js";
 import bcrypt from 'bcrypt'
 import validator from 'validator'
 import jwt from 'jsonwebtoken'
-
+import { clearRefreshTokenCookie,setRefreshTokenCookie } from '../utils/tokenService.js'; 
 
 
 const createToken = (id) => {
@@ -43,16 +43,20 @@ const login = async (req, res) => {
             });
         }
 
-        const token = createToken(user._id);
+        const accessToken = generateAccessToken(user._id);
+        const refreshToken = generateRefreshToken(user._id);
 
+        setRefreshTokenCookie(res, refreshToken);
+
+        // Send the Access Token and user data back in the JSON response
         return res.status(200).json({
             message: "Login successful",
-            token, 
+            accessToken, 
             user: {
                 id: user._id,
                 name: user.name,
                 email: user.email,
-                role: user.role,
+                role: user.role
             }
         });
 
@@ -185,7 +189,48 @@ const adminlogin = async (req, res) => {
 
 
 
-export { login,
-         register,
-         adminlogin
-}
+
+
+// Generate New Access Token 
+const refreshToken = async (req, res) => {
+    try {
+        // Grab the secure cookie that cookie-parser just found for us
+        const token = req.cookies.jwt_refresh; 
+
+        if (!token) {
+            return res.status(401).json({ message: "Not logged in" });
+        }
+
+        // Verify it hasn't been tampered with and hasn't expired (7 days)
+        const decoded = jwt.verify(token, process.env.JWT_REFRESH_SECRET);
+
+        // If valid, generate a brand new 15-minute Access Token
+        const newAccessToken = generateAccessToken(decoded.id);
+
+        return res.status(200).json({
+            success: true,
+            accessToken: newAccessToken
+        });
+
+    } catch (error) {
+        console.log("Refresh token error:", error);
+        return res.status(403).json({ message: "Session expired. Please log in again." });
+    }
+};
+
+// --- Logout ---
+const logout = async (req, res) => {
+    try {
+        // Destroy the HttpOnly cookie
+        clearRefreshTokenCookie(res);
+        return res.status(200).json({ message: "Logged out successfully" });
+    } catch (error) {
+        return res.status(500).json({ message: "Error logging out" });
+    }
+};
+
+
+export { login, register, adminlogin, refreshToken, logout };
+
+
+

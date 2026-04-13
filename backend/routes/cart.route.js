@@ -1,10 +1,11 @@
 import express from 'express';
-import { addToCart } from '../controllers/cart.controller.js';
-import { protectRoute } from '../middleware/auth.middleware.js'; // The gatekeeper
-
+import { addToCart, getUserCart, updateCart } from '../controllers/cart.controller.js';
+import { protectRoute } from '../middleware/auth.middleware.js';
 const router = express.Router();
 
-// Route: POST /api/cart/add
+// Route: /api/cart/
 router.post('/add', protectRoute, addToCart);
+router.get('/get', protectRoute, getUserCart); 
+router.post('/update', protectRoute, updateCart);
 
 export default router;
