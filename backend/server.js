@@ -5,7 +5,7 @@ import connectDb from './config/db.js';
 import connectCloudinary from './config/cloudinary.js';
 import userRouter from './routes/user.route.js';
 import productRouter from './routes/product.route.js';
-
+import cartRouter from './routes/cart.route.js';
 
 dotenv.config();
 const app = express()
@@ -27,6 +27,7 @@ app.get('/',(req,res)=>{
 
 app.use('/api/user',userRouter)
 app.use('/api/product',productRouter)
+app.use('/api/cart',cartRouter)
 
 app.listen(port,()=>{
     console.log("SERVER IS RUNNING")
