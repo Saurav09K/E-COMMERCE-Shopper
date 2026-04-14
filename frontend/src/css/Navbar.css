@@ -1,0 +1,223 @@
+/* --- Main Navbar Container --- */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 8px;
+  font-family: inherit;
+}
+
+.logo {
+  width: 120px; 
+  cursor: pointer;
+}
+
+/* --- Center Navigation List --- */
+.nav-links {
+  display: flex;
+  gap: 30px; 
+  list-style: none; 
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #374151; 
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a p {
+  margin: 0;
+  padding-bottom: 4px; 
+}
+
+/* The Underline (<hr>) Styling */
+.nav-links li a .underline {
+  width: 0; 
+  height: 2px;
+  background-color: #1f2937; 
+  border: none;
+  margin: 0;
+  transition: width 0.3s ease; 
+}
+
+.nav-links li a:hover {
+  color: #000000;
+}
+
+.nav-links li a:hover .underline,
+.nav-links li a.active .underline {
+  width: 50%; 
+}
+
+/* --- Right Side Section (Search & Profile) --- */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.icon {
+  width: 20px; 
+  cursor: pointer;
+}
+
+/* --- Profile Dropdown Logic --- */
+.profile-dropdown {
+  position: relative; 
+  cursor: pointer;
+}
+
+/* Initially hide the menu */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 100%; 
+  padding-top: 15px; 
+  z-index: 10; 
+}
+
+/* Show the menu when hovering over the profile container */
+.profile-dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Styling the actual white box of the menu */
+.dropdown-content {
+  background-color: #ffffff;
+  min-width: 150px;
+  border: 1px solid #e5e7eb; 
+  border-radius: 6px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05); 
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0;
+}
+
+/* Individual links inside the dropdown */
+.dropdown-content p {
+  margin: 0;
+  padding: 10px 20px;
+  font-size: 14px;
+  color: #4b5563;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-content p:hover {
+  background-color: #f3f4f6; 
+  color: #000000;
+}
+
+/* --- Specific Logout Styling --- */
+.dropdown-content p.logout-text {
+  color: #ef4444; 
+  border-top: 1px solid #e5e7eb; 
+}
+
+.dropdown-content p.logout-text:hover {
+  background-color: #fef2f2; 
+  color: #dc2626; 
+}
+
+/* --- Cart Icon & Badge Styling --- */
+.cart-link {
+  position: relative; 
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.cart-count {
+  position: absolute;
+  right: -6px; 
+  bottom: -6px;
+  width: 16px;
+  text-align: center;
+  line-height: 16px; 
+  background-color: #000000; 
+  color: #ffffff; 
+  border-radius: 50%; 
+  font-size: 10px;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* --- Mobile Menu Icon --- */
+.menu-icon {
+  width: 20px; 
+  cursor: pointer;
+  margin-left: 10px; 
+}
+
+
+/* =========================================
+   MOBILE SIDEBAR STYLING
+   ========================================= */
+
+/* The sidebar container that slides in */
+.sidebar-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  overflow: hidden;
+  transition: width 0.3s ease;
+  width: 0; /* Hidden by default */
+  z-index: 50;
+}
+
+/* When the state is true, it expands to 100% width */
+.sidebar-menu.visible {
+  width: 100%;
+}
+
+.sidebar-content {
+  display: flex;
+  flex-direction: column;
+  color: #4b5563;
+}
+
+/* The 'Back' button area */
+.sidebar-back {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  cursor: pointer;
+}
+
+.back-icon {
+  height: 16px;
+  transform: rotate(180deg); /* Flips the dropdown icon to look like a back arrow */
+}
+
+/* The links inside the mobile menu */
+.sidebar-link {
+  padding: 8px 0 8px 24px;
+  border-bottom: 1px solid #e5e7eb;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Hide desktop links and show hamburger menu on small screens */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none; 
+  }
+}
+
+/* Hide the hamburger menu on large screens */
+@media (min-width: 769px) {
+  .menu-icon {
+    display: none; 
+  }
+}

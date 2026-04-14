@@ -66,7 +66,7 @@ async function listProduct(req,res){
         const product = await Product.find({});
         return res.status(200).json({
             message:"Product list",
-            product
+            products
         })
     }catch(error){
         console.log("ERROR IN LIST PRODUCT :", error);

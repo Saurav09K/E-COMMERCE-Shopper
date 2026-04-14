@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt'
 import validator from 'validator'
 import jwt from 'jsonwebtoken'
 import { clearRefreshTokenCookie,setRefreshTokenCookie } from '../utils/tokenService.js'; 
-
+import { generateAccessToken, generateRefreshToken } from '../utils/tokenService.js';
 
 const createToken = (id) => {
     return jwt.sign(
