@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { ShopContext } from '../context/ShopContext';
 import { assets } from '../assets/assets';
 import '../css/Cart.css';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
     const { products, cartItems, updateQuantity } = useContext(ShopContext);
@@ -76,9 +77,9 @@ const Cart = () => {
                 })}
             </div>
             
-            {/* Proceed to checkout button area (we will build this next!) */}
+            
             <div className="cart-footer">
-                <button className="checkout-btn">PROCEED TO CHECKOUT</button>
+                <Link to="/place-order" className="checkout-btn" style={{underline : "none"}}>PROCEED TO CHECKOUT</Link>
             </div>
         </div>
     );

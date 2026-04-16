@@ -127,7 +127,28 @@ const addToCart = async (itemId, size) => {
         }
     }
 
-    // --- NEW: Auto-fetch the cart when the token loads ---
+
+    // --- NEW: Calculate Total Cart Price ---
+    const getCartAmount = () => {
+        let totalAmount = 0;
+        for (const items in cartItems) {
+            // Find the product details to get the price
+            let itemInfo = products.find((product) => product._id === items);
+            
+            for (const item in cartItems[items]) {
+                try {
+                    if (cartItems[items][item] > 0 && itemInfo) {
+                        totalAmount += itemInfo.price * cartItems[items][item];
+                    }
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+        }
+        return totalAmount;
+    };
+
+    // Auto-fetch the cart when the token loads
     useEffect(() => {
         if (token) {
             getUserCart(token);
@@ -142,7 +163,8 @@ const addToCart = async (itemId, size) => {
         logoutUser,
         cartItems, setCartItems, 
         getCartCount,
-        updateQuantity
+        updateQuantity,
+        getCartAmount
 
     };
 

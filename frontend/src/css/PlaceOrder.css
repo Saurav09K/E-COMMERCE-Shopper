@@ -1,0 +1,156 @@
+/* Main Layout */
+.place-order-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .place-order-container {
+        flex-direction: row;
+    }
+}
+
+/* --- Left Side: Delivery Form --- */
+.delivery-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 480px;
+}
+
+.title-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.title-container h2 {
+    font-size: 20px;
+    color: #1f2937;
+}
+
+.title-container .text-gray {
+    color: #6b7280;
+    font-weight: 400;
+}
+
+.title-container hr {
+    border: none;
+    height: 2px;
+    background-color: #414141;
+    width: 40px;
+}
+
+.input-field {
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    padding: 12px 15px;
+    width: 100%;
+    outline: none;
+}
+
+.input-field:focus {
+    border-color: #4b5563;
+}
+
+.multi-fields {
+    display: flex;
+    gap: 15px;
+}
+
+/* --- Right Side: Order Summary & Payment --- */
+.order-summary {
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Totals Box */
+.totals-box {
+    margin-bottom: 40px;
+}
+
+.totals-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    color: #4b5563;
+}
+
+.faint-line {
+    border: none;
+    border-top: 1px solid #e5e7eb;
+}
+
+.bold-row {
+    font-weight: 700;
+    color: #111827;
+}
+
+/* Payment Box */
+.payment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+@media (min-width: 1024px) {
+    .payment-options {
+        flex-direction: row;
+    }
+}
+
+.payment-method {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid #d1d5db;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.radio-circle {
+    min-width: 14px;
+    height: 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 50%;
+}
+
+/* When a payment method is clicked! */
+.payment-method.selected .radio-circle {
+    background-color: #22c55e; /* Green active dot */
+    border-color: #22c55e;
+}
+
+.payment-method p {
+    font-size: 14px;
+    font-weight: 500;
+    color: #4b5563;
+    margin: 0;
+}
+
+/* Submit Button */
+.place-order-btn {
+    background-color: #000;
+    color: #fff;
+    padding: 15px 30px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 30px;
+    transition: background-color 0.2s;
+}
+
+.place-order-btn:hover {
+    background-color: #333;
+}

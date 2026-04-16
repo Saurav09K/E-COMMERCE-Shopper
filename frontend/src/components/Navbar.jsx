@@ -40,8 +40,8 @@ const Navbar = () => {
         </li>
 
         <li>
-          <NavLink to={'/about'}>
-            <p>ABOUT</p>
+          <NavLink to={'/orders'}>
+            <p>ORDERS</p>
             <hr className="underline" />
           </NavLink>
         </li>

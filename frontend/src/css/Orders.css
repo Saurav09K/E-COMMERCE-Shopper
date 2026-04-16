@@ -1,0 +1,142 @@
+.orders-container {
+    padding: 40px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    border-top: 1px solid #e5e7eb;
+}
+
+.orders-title {
+    margin-bottom: 30px;
+}
+
+.orders-title h2 {
+    font-size: 24px;
+    color: #1f2937;
+}
+
+.orders-title .text-gray {
+    color: #6b7280;
+    font-weight: 400;
+}
+
+.orders-title hr {
+    border: none;
+    height: 2px;
+    background-color: #414141;
+    width: 50px;
+    margin-top: 8px;
+}
+
+/* --- The Order Cards --- */
+.order-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px 0;
+    border-top: 1px solid #e5e7eb;
+    border-bottom: 1px solid #e5e7eb;
+    gap: 20px;
+}
+
+/* Switches to side-by-side on larger screens */
+@media (min-width: 768px) {
+    .order-card {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+/* --- Left Side: Info --- */
+.order-info-section {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.order-image {
+    width: 80px;
+    border-radius: 4px;
+}
+
+.order-item-name {
+    font-weight: 500;
+    color: #374151;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.order-details {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 14px;
+    color: #4b5563;
+    margin-bottom: 8px;
+}
+
+.order-price {
+    font-weight: 600;
+    color: #111827;
+}
+
+.order-date {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.order-date span {
+    color: #374151;
+    font-weight: 500;
+}
+
+/* --- Right Side: Status --- */
+.order-status-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .order-status-section {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 50%;
+    }
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #374151;
+}
+
+.status-dot {
+    min-width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #22c55e; /* Green active dot */
+}
+
+.track-order-btn {
+    border: 1px solid #d1d5db;
+    background-color: transparent;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #4b5563;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.track-order-btn:hover {
+    background-color: #f9fafb;
+    color: #111827;
+    border-color: #9ca3af;
+}
