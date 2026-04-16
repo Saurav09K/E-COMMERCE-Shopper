@@ -4,8 +4,7 @@ import User from '../models/user.model.js';
 export const protectRoute = async (req, res, next) => {
     try {
         let token;
-
-        // Check if the token is passed in the authorization header
+        
         if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
             // Extract the token (Format is "Bearer <token>")
             token = req.headers.authorization.split(' ')[1];

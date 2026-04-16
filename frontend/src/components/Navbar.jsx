@@ -7,7 +7,7 @@ import { ShopContext } from '../context/ShopContext';
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
   
-  const { token, user, logoutUser } = useContext(ShopContext);
+  const { token, user, logoutUser, getCartCount } = useContext(ShopContext);
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -87,7 +87,7 @@ const Navbar = () => {
         {/* Cart Icon Section */}
         <Link to='/cart' className='cart-link'>
           <img src={assets.cart_icon} alt="Cart" className='icon' />
-          <p className='cart-count'>0</p> 
+          <p className='cart-count'>{getCartCount()}</p> 
         </Link>
 
         {/* Menu Icon (Mobile) */}

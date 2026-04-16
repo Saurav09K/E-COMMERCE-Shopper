@@ -14,10 +14,8 @@ const addToCart = async (req, res) => {
             });
         }
 
-        // 2. Fetch the user's current cart
         const user = await User.findById(userId);
         
-        // We make a copy of the existing cart object to modify it
         let cartData = user.cartData || {}; 
 
         // 3. The Logic: Does this product exist in the cart yet?
@@ -53,6 +51,8 @@ const addToCart = async (req, res) => {
 }
 
 
+
+
 // Update cart quantities
 const updateCart = async (req, res) => {
     try {
@@ -69,7 +69,7 @@ const updateCart = async (req, res) => {
         const user = await User.findById(userId);
         let cartData = user.cartData || {};
 
-        // The Logic: If they set quantity to 0, they want to remove it
+        // If they set quantity to 0, they want to remove it
         if (quantity === 0) {
             delete cartData[itemId][size];
             
@@ -98,13 +98,15 @@ const updateCart = async (req, res) => {
     }
 }
 
+
+
 // Fetch user cart data
 const getUserCart = async (req, res) => {
     try {
         const userId = req.user._id;
 
         const user = await User.findById(userId);
-        const cartData = user.cartData || {};
+        const cartData = user.cartData;
 
         return res.status(200).json({ 
             success: true, 
@@ -119,6 +121,7 @@ const getUserCart = async (req, res) => {
         });
     }
 }
+
 
 
 export { addToCart, updateCart, getUserCart };
