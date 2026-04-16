@@ -5,6 +5,7 @@ import '../css/PlaceOrder.css';
 const PlaceOrder = () => {
     const { getCartAmount } = useContext(ShopContext);
     
+    
     const [method, setMethod] = useState('cod'); 
 
     // We will wire this up to your backend later!
