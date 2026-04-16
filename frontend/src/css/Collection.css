@@ -159,3 +159,23 @@
     font-weight: 600;
     margin-top: 4px;
 }
+
+/* --- Sorting Dropdown --- */
+.sort-dropdown {
+    border: 1px solid #e5e7eb;
+    padding: 10px 15px;
+    font-size: 14px;
+    color: #374151;
+    background-color: white;
+    outline: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* Make sure the header spaces the title and dropdown perfectly */
+.collection-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}

@@ -11,6 +11,7 @@ const Collection = () => {
 
     const [category, setCategory] = useState([]);
     const [subCategory, setSubCategory] = useState([]);
+    const [sortType, setSortType] = useState('relevant');
 
     const toggleCategory = (e) => {
         if (category.includes(e.target.value)) {
@@ -40,12 +41,22 @@ const Collection = () => {
             productsCopy = productsCopy.filter(item => subCategory.includes(item.subCategory));
         }
 
-        setFilterProducts(productsCopy);
+        switch (sortType) {
+            case 'low-high':
+                setFilterProducts(productsCopy.sort((a, b) => a.price - b.price));
+                break;
+            case 'high-low':
+                setFilterProducts(productsCopy.sort((a, b) => b.price - a.price));
+                break;
+            default:
+                setFilterProducts(productsCopy);
+                break;
+        }
     };
 
     useEffect(() => {
         applyFilter();
-    }, [category, subCategory, products]);
+    }, [category, subCategory, products, sortType]);
 
     return (
         <div className="collection-container">
@@ -98,6 +109,15 @@ const Collection = () => {
                 <div className="collection-header">
                     <h2>ALL <span className="text-gray">COLLECTIONS</span></h2>
                 </div>
+
+                {/* --- NEW: The Sorting Dropdown --- */}
+                <select 
+                onChange={(e) => setSortType(e.target.value)} 
+                className="sort-dropdown">
+                <option value="relevant">Sort by: Relevant</option>
+                <option value="low-high">Sort by: Low to High</option>
+                <option value="high-low">Sort by: High to Low</option>
+                </select>
 
                 {/* The Grid */}
                 <div className="collection-grid">
