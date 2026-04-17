@@ -1,13 +1,43 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ShopContext } from '../context/ShopContext';
+import axios from 'axios';
 import '../css/Orders.css';
 
 const Orders = () => {
-    const { products } = useContext(ShopContext);
+    const { backendUrl, token } = useContext(ShopContext);
+    const [orderData, setOrderData] = useState([]);
 
-    // We are grabbing a few items from your inventory to act as "fake orders" 
-    // just so we can build the visual layout. Later, this will be real backend data!
-    const orderData = products.slice(1, 4);
+    const loadOrderData = async () => {
+        try {
+            if (!token) return;
+
+            const response = await axios.get(
+                `${backendUrl}/api/order/myorders`, 
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
+
+            if (response.data.success) {
+                let allOrdersItem = [];
+                
+                response.data.orders.map((order) => {
+                    order.items.map((item) => {
+                        item['status'] = order.status;
+                        item['payment'] = order.payment;
+                        item['paymentMethod'] = order.paymentMethod;
+                        item['date'] = order.date;
+                        allOrdersItem.push(item);
+                    });
+                });
+                setOrderData(allOrdersItem.reverse());
+            }
+        } catch (error) {
+            console.error("Error fetching orders:", error);
+        }
+    };
+
+    useEffect(() => {
+        loadOrderData();
+    }, [token]);
 
     return (
         <div className="orders-container">
@@ -20,29 +50,29 @@ const Orders = () => {
                 {orderData.map((item, index) => (
                     <div key={index} className="order-card">
                         
-                        {/* Left Side: Image and Basic Info */}
                         <div className="order-info-section">
                             <img src={item.image[0]} alt={item.name} className="order-image" />
                             <div>
                                 <p className="order-item-name">{item.name}</p>
                                 <div className="order-details">
                                     <p className="order-price">${item.price}</p>
-                                    <p>Quantity: 1</p>
-                                    <p>Size: M</p>
+                                    <p>Quantity: {item.quantity}</p>
+                                    <p>Size: {item.size}</p>
                                 </div>
                                 <p className="order-date">
-                                    Date: <span>25 Jul, 2024</span>
+                                   
+                                    Date: <span>{new Date(item.date).toDateString()}</span>
                                 </p>
                             </div>
                         </div>
 
-                        {/* Right Side: Status and Action Button */}
                         <div className="order-status-section">
                             <div className="status-indicator">
                                 <span className="status-dot"></span>
-                                <p>Ready to ship</p>
+                                <p>{item.status}</p>
                             </div>
-                            <button className="track-order-btn">Track Order</button>
+                           
+                            <button onClick={loadOrderData} className="track-order-btn">Track Order</button>
                         </div>
 
                     </div>

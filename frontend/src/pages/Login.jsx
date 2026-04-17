@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { ShopContext } from '../context/ShopContext';
 import '../css/Login.css';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [currentState, setCurrentState] = useState('Login');
@@ -9,6 +10,8 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const { setToken, setUser } = useContext(ShopContext);
+
+    const navigate = useNavigate();
 
 
     
@@ -39,6 +42,7 @@ const Login = () => {
                     setToken(response.data.accessToken);
                     setUser(response.data.user);
                     alert("Login Successful!");
+                    navigate('/');
                 }
             }
         } catch (error) {
