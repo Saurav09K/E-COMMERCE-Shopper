@@ -1,0 +1,41 @@
+.sidebar {
+    width: 18%;
+    min-height: 100vh;
+    border-right: 1px solid #e5e7eb;
+    background-color: white;
+}
+
+.sidebar-links {
+    display: flex;
+    flex-direction: column;
+    padding-top: 40px;
+    gap: 15px;
+}
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid #e5e7eb;
+    border-right: none;
+    padding: 10px 20px;
+    border-radius: 4px 0 0 4px; /* Rounds only the left corners */
+    margin-left: 20%; /* Pushes the buttons slightly off the left wall */
+    text-decoration: none;
+    color: #4b5563;
+    font-weight: 500;
+    font-size: 15px;
+    transition: all 0.2s ease;
+}
+
+.sidebar-item:hover {
+    background-color: #f9fafb;
+}
+
+/* React Router automatically applies this when the link matches the URL! */
+.sidebar-item.active {
+    background-color: #f3f4f6;
+    border-color: #d1d5db;
+    color: #000;
+    font-weight: 600;
+}

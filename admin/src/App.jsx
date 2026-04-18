@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Login from './components/Login';
+import Navbar from './components/Navbar';
+import Sidebar from './components/Sidebar';
+
 
 const App = () => {
-  const [token, setToken] = useState('');
+  const [token, setToken] = useState(''); // The master key!
 
   return (
     <div className="app-container">
@@ -10,9 +14,27 @@ const App = () => {
         <Login setToken={setToken} />
       ) : (
         <>
-          <div className="admin-dashboard">
-            <h1>Welcome to the Control Room, Boss.</h1>
-            <button onClick={() => setToken('')}>Logout</button>
+          {/* Top Navigation */}
+          <Navbar setToken={setToken} />
+          <hr className="admin-hr" />
+          
+          {/* Main Dashboard Area */}
+          <div className="admin-main-content">
+            
+            {/* Left Sidebar */}
+            <Sidebar />
+            
+            {/* Right Side: Where the actual pages load */}
+            <div className="admin-page-content">
+                <h2>Select an option from the sidebar to get started.</h2>
+              {/* WE WILL UNCOMMENT THIS ONCE WE BUILD THE PAGES! */}
+              {/* <Routes>
+                <Route path='/add' element={<Add token={token} />} />
+                <Route path='/list' element={<List token={token} />} />
+                <Route path='/orders' element={<Orders token={token} />} />
+              </Routes> */}
+            </div>
+
           </div>
         </>
       )}

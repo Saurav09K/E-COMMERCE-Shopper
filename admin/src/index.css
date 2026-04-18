@@ -75,3 +75,28 @@ body {
 .login-btn:hover {
     background-color: #333;
 }
+
+/* --- App Layout Grid --- */
+.admin-hr {
+    border: none;
+    height: 1px;
+    background-color: #e5e7eb;
+    margin: 0;
+}
+
+.admin-main-content {
+    display: flex;
+    width: 100%;
+}
+
+.admin-page-content {
+    width: 82%; /* Takes up the remaining space next to the 18% sidebar */
+    padding: 40px;
+    background-color: #f9fafb; /* A very faint gray to make your white forms pop */
+    min-height: 100vh;
+}
+
+.admin-page-content h2 {
+    color: #374151;
+    font-weight: 500;
+}

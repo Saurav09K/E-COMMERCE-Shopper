@@ -1,0 +1,35 @@
+.admin-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 40px;
+    background-color: white;
+}
+
+.admin-logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0;
+}
+
+.text-gray {
+    color: #9ca3af;
+    font-weight: 500;
+}
+
+.logout-btn {
+    background-color: #4b5563;
+    color: white;
+    padding: 8px 24px;
+    border-radius: 9999px; /* Gives it a clean pill shape */
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+}
+
+.logout-btn:hover {
+    background-color: #000;
+}

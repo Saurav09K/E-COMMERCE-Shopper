@@ -20,7 +20,8 @@ const port = process.env.PORT || 5000;
 app.use(express.json())
 app.use(cookieParser());
 app.use(cors({
-    origin: 'http://localhost:5173', // Put your exact React frontend URL here
+    origin: ['http://localhost:5173', 'http://localhost:5174'],
+    // admin and frontend URLS
     credentials: true // <--This allows cookies to pass between frontend and backend
 }));
 connectDb();
