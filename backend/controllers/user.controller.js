@@ -131,61 +131,34 @@ const register = async (req, res) => {
 
 
 
-// Admin Login
-const adminlogin = async (req, res) => {
+export const adminLogin = async (req, res) => {
     try {
         const { email, password } = req.body;
 
-        if (!email || !password) {
-            return res.status(400).json({
-                message: "Please provide email and password"
-            });
-        }
-
-        const normalizedEmail = email.toLowerCase();
-        const user = await User.findOne({ email: normalizedEmail });
+        const user = await User.findOne({ email });
 
         if (!user) {
-            return res.status(404).json({
-                message: "User does not exist"
-            });
+            return res.json({ success: false, message: "User doesn't exist" });
         }
 
-        // --- THE NEW CRUCIAL ADMIN CHECK ---
         if (user.role !== 'admin') {
-            return res.status(403).json({
-                message: "Access denied. Admin privileges required."
-            });
+            return res.json({ success: false, message: "Access Denied. Bosses only." });
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
 
-        if (!isMatch) {
-            return res.status(401).json({
-                message: "Invalid credentials"
-            });
+        if (isMatch) {
+            const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET);
+            res.json({ success: true, token });
+        } else {
+            res.json({ success: false, message: "Invalid credentials" });
         }
 
-        const token = createToken(user._id);
-
-        return res.status(200).json({
-            message: "Admin login successful",
-            token, 
-            user: {
-                id: user._id,
-                name: user.name,
-                email: user.email,
-                role: user.role
-            }
-        });
-
     } catch (error) {
-        console.log("Admin Login error:", error);
-        return res.status(500).json({
-            message: "Internal server error"
-        });
+        console.log("Admin login error:", error);
+        res.json({ success: false, message: error.message });
     }
-}
+};
 
 
 
@@ -218,7 +191,7 @@ const refreshToken = async (req, res) => {
     }
 };
 
-// --- Logout ---
+//  Logout 
 const logout = async (req, res) => {
     try {
         // Destroy the HttpOnly cookie

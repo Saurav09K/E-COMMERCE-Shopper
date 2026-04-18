@@ -36,11 +36,6 @@ const productSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
-    role: { 
-            type: String, 
-            enum: ['user', 'admin'], 
-            default: 'user' 
-        },
 })
 
 const Product = mongoose.model("Product", productSchema);
