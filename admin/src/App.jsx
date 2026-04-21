@@ -7,7 +7,7 @@ import Add from './pages/Add';
 
 
 const App = () => {
-  const [token, setToken] = useState(''); // The master key!
+  const [token, setToken] = useState(''); 
 
   return (
     <div className="app-container">

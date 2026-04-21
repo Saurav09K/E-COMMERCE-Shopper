@@ -148,8 +148,7 @@ const adminLogin = async (req, res) => {
         const isMatch = await bcrypt.compare(password, user.password);
 
         if (isMatch) {
-            const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_ACCESS_SECRET);
-            res.json({ success: true, token });
+        const token = jwt.sign({ userId: user._id, role: user.role }, process.env.JWT_ACCESS_SECRET);            res.json({ success: true, token });
         } else {
             res.json({ success: false, message: "Invalid credentials" });
         }
@@ -194,7 +193,6 @@ const refreshToken = async (req, res) => {
 //  Logout 
 const logout = async (req, res) => {
     try {
-        // Destroy the HttpOnly cookie
         clearRefreshTokenCookie(res);
         return res.status(200).json({ message: "Logged out successfully" });
     } catch (error) {
