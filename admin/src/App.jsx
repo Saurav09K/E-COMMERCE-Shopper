@@ -4,7 +4,7 @@ import Login from './components/Login';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import Add from './pages/Add';
-
+import List from './pages/List';
 
 const App = () => {
   const [token, setToken] = useState(''); 
@@ -29,8 +29,8 @@ const App = () => {
                 <h2>Select an option from the sidebar to get started.</h2>
               <Routes>
                 <Route path='/add' element={<Add token={token} />} />
-                {/* <Route path='/list' element={<List token={token} />} />
-                <Route path='/orders' element={<Orders token={token} />} /> */}
+                <Route path='/list' element={<List token={token} />} />
+                {/* <Route path='/orders' element={<Orders token={token} />} /> */}
               </Routes> 
             </div>
 
