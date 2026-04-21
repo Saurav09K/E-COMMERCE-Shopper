@@ -22,13 +22,13 @@ const List = ({ token }) => {
         }
     };
 
-    const removeProduct = async (id) => {
+   const removeProduct = async (id) => {
         try {
-            const response = await axios.post(`${backendUrl}/api/product/remove`, { id }, {
+            const response = await axios.delete(`${backendUrl}/api/product/remove/${id}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
-            if (response.data.success) {
+            if (response.data.message === "Product removed successfully") {
                 alert("Product Removed");
                 await fetchList(); 
             } else {
